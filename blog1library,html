@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Find out what your public library has to offer in Tucson, AZ"
+  >
+
+  <title>Find Out What Your Public Library Has to Offer! · Love, Tucson ♡</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+    :root {
+      --pink: #f4c3d1;
+      --pink-light: #fff0f4;
+      --pink-dark: #b34e70;
+      --sage: #9aaa8b;
+      --sage-dark: #526452;
+      --tan: #d99a62;
+      --cream: #fffaf1;
+      --paper: #fffdf9;
+      --ink: #493b3d;
+      --muted: #806f70;
+      --line: #ead9ce;
+      --shadow: 0 18px 45px rgba(95,65,54,.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', Arial, sans-serif;
+    }
+
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .13;
+      background-image:
+        radial-gradient(#a66f70 .7px, transparent .7px);
+      background-size: 20px 20px;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ---------------- HEADER ---------------- */
+
+    .announcement {
+      background: var(--sage-dark);
+      color: #fff;
+      padding: 9px 6%;
+      text-align: center;
+      font-size: .78rem;
+      letter-spacing: .5px;
+    }
+
+    .site-header {
+      height: 78px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,250,241,.94);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+    }
+
+    .brand span {
+      color: var(--pink-dark);
+      font-style: italic;
+    }
+
+    .brand b {
+      color: var(--pink-dark);
+      font-size: 1.3rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .88rem;
+      position: relative;
+    }
+
+    .nav a.active,
+    .nav a:hover {
+      color: var(--pink-dark);
+    }
+
+    .nav a.active:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      margin: auto;
+      width: 5px;
+      height: 5px;
+      background: var(--pink-dark);
+      border-radius: 50%;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: none;
+      font-size: 1.5rem;
+    }
+
+    /* ---------------- ARTICLE HERO ---------------- */
+
+    .article-hero {
+      padding: 75px 8% 45px;
+      text-align: center;
+      background: var(--pink-light);
+      border-bottom: 1px solid #f0d9df;
+    }
+
+    .eyebrow {
+      color: var(--pink-dark);
+      font-weight: 700;
+      font-size: .73rem;
+      letter-spacing: 2.3px;
+      margin: 0 0 14px;
+    }
+
+    .article-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: .95;
+      margin: 0 auto;
+      max-width: 900px;
+      color: var(--ink);
+      letter-spacing: -2px;
+    }
+
+    .article-hero h1 em {
+      color: var(--pink-dark);
+      font-weight: 500;
+    }
+
+    .article-meta {
+      margin-top: 25px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    /* ---------------- FEATURE IMAGE ---------------- */
+
+    .article-image {
+      width: min(1100px, 84%);
+      margin: 45px auto 0;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--paper);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: 500px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .image-caption {
+      padding: 12px 18px;
+      font-size: .75rem;
+      color: var(--muted);
+      text-align: center;
+      background: var(--paper);
+    }
+
+    /* ---------------- ARTICLE ---------------- */
+
+    .article-container {
+      max-width: 850px;
+      margin: 70px auto 100px;
+      padding: 0 25px;
+    }
+
+    .article-intro {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 45px;
+    }
+
+    .article-container h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.35rem;
+      line-height: 1.1;
+      margin: 55px 0 18px;
+    }
+
+    .article-container h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin: 30px 0 10px;
+    }
+
+    .article-container p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin: 0 0 20px;
+    }
+
+    .article-container ul {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 1.05rem;
+      padding-left: 25px;
+    }
+
+    .article-container li {
+      margin-bottom: 10px;
+    }
+
+    /* ---------------- FEATURE BOX ---------------- */
+
+    .library-box {
+      background: var(--sage-dark);
+      color: white;
+      border-radius: 25px;
+      padding: 35px 40px;
+      margin: 45px 0;
+    }
+
+    .library-box .eyebrow {
+      color: #dce5d8;
+    }
+
+    .library-box h2 {
+      margin-top: 5px;
+      color: white;
+    }
+
+    .library-box p {
+      color: #edf2eb;
+    }
+
+    /* ---------------- RESOURCE CARDS ---------------- */
+
+    .resources {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin: 30px 0 45px;
+    }
+
+    .resource-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 25px;
+      transition: .2s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--pink-dark);
+      box-shadow: var(--shadow);
+    }
+
+    .resource-icon {
+      font-size: 2rem;
+      color: var(--pink-dark);
+      margin-bottom: 10px;
+    }
+
+    .resource-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+    }
+
+    .resource-card p {
+      font-size: .9rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .resource-card a {
+      color: var(--pink-dark);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: .88rem;
+    }
+
+    /* ---------------- CTA ---------------- */
+
+    .article-cta {
+      background: var(--pink);
+      border-radius: 25px;
+      padding: 40px;
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .article-cta h2 {
+      margin-top: 0;
+    }
+
+    .article-cta p {
+      max-width: 600px;
+      margin: 0 auto 25px;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--pink-dark);
+      color: white;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .86rem;
+      box-shadow: 0 8px 18px rgba(179,78,112,.2);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 45px;
+      color: var(--pink-dark);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+
+    footer {
+      background: var(--sage-dark);
+      color: #fff;
+      padding: 45px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    footer p {
+      margin: 0;
+      color: #dbe4d8;
+      font-size: .85rem;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: .82rem;
+    }
+
+    /* ---------------- MOBILE ---------------- */
+
+    @media(max-width: 850px) {
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        padding: 20px 6%;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .nav.open {
+        display: flex;
+      }
+
+      .nav a.active:after {
+        display: none;
+      }
+
+      .article-image {
+        width: 90%;
+      }
+
+      .article-image img {
+        height: 350px;
+      }
+
+      .resources {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media(max-width: 520px) {
+
+      .article-hero {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .article-hero h1 {
+        font-size: 3rem;
+      }
+
+      .article-container {
+        padding: 0 5%;
+      }
+
+      .article-intro {
+        font-size: 1.35rem;
+      }
+
+      .article-container h2 {
+        font-size: 2rem;
+      }
+
+      .library-box,
+      .article-cta {
+        padding: 28px;
+      }
+
+      .article-image img {
+        height: 260px;
+      }
+
+      .announcement {
+        font-size: .68rem;
+      }
+
+      .site-header {
+        padding: 0 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement">
+    ♡ Made for the Old Pueblo · Discover something local today
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+
+    <a class="brand" href="index.html">
+      <span>Love,</span> Tucson <b>♡</b>
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu">
+      ☰
+    </button>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="blog.html">Blog</a>
+      <a href="sources.html">Sources</a>
+    </nav>
+
+  </header>
+
+
+  <main>
+
+    <!-- ARTICLE TITLE -->
+    <section class="article-hero">
+
+      <p class="eyebrow">TUCSON GUIDE · LOCAL LOVE</p>
+
+      <h1>
+        Find out what your
+        <em>public library</em>
+        has to offer!
+      </h1>
+
+      <div class="article-meta">
+        By Love, Tucson · September 2026
+      </div>
+
+    </section>
+
+
+    <!-- LIBRARY PHOTO -->
+    <div class="article-image">
+
+      <img
+        src="images/library.jpg"
+        alt="Inside a Pima County Public Library in Tucson"
+      >
+
+      <div class="image-caption">
+        A look inside one of Tucson's public libraries.
+      </div>
+
+    </div>
+
+
+    <!-- ARTICLE -->
+    <article class="article-container">
+
+      <p class="article-intro">
+        When you think about your local library, you might picture shelves
+        full of books. But Tucson's public libraries have so much more to
+        offer.
+      </p>
+
+
+      <p>
+        The Pima County Public Library is a place to read, learn, connect,
+        explore, and find resources that can make everyday life a little
+        easier.
+      </p>
+
+
+      <p>
+        Whether you're looking for your next favorite book, help with
+        homework, something to do with your kids, or a quiet place to work,
+        your local library is worth checking out.
+      </p>
+
+
+      <!-- LIBRARY HIGHLIGHT -->
+      <div class="library-box">
+
+        <p class="eyebrow">A LITTLE LOCAL REMINDER</p>
+
+        <h2>
+          Your library card can open a lot of doors.
+        </h2>
+
+        <p>
+          Pima County Public Library offers access to physical materials,
+          digital resources, programs, learning tools, and more.
+        </p>
+
+      </div>
+
+
+      <!-- SECTION -->
+      <h2>So... what can you actually do there?</h2>
+
+
+      <p>
+        Here are just a few things worth exploring through the Pima County
+        Public Library.
+      </p>
+
+
+      <!-- RESOURCE CARDS -->
+      <div class="resources">
+
+        <div class="resource-card">
+
+          <div class="resource-icon">📚</div>
+
+          <h3>Borrow books</h3>
+
+          <p>
+            Browse books, movies, music, magazines, audiobooks, and other
+            materials through the library catalog.
+          </p>
+
+          <a
+            href="https://www.library.pima.gov/catalog/"
+            target="_blank"
+            rel="noopener"
+          >
+            Explore the catalog →
+          </a>
+
+        </div>
+
+
+        <div class="resource-card">
+
+          <div class="resource-icon">🎧</div>
+
+          <h3>Read & listen online</h3>
+
+          <p>
+            Your library also provides digital resources including eBooks,
+            audiobooks, magazines, music, and streaming video.
+          </p>
+
+          <a
+            href="https://www.library.pima.gov/elibrary/"
+            target="_blank"
+            rel="noopener"
+          >
+            Explore the E-Library →
+          </a>
+
+        </div>
+
+
+        <div class="resource-card">
+
+          <div class="resource-icon">💻</div>
+
+          <h3>Learn something new</h3>
+
+          <p>
+            Find online learning resources, computer help, research tools,
+            homework help, and more.
+          </p>
+
+          <a
+            href="https://www.library.pima.gov/elibrary/"
+            target="_blank"
+            rel="noopener"
+          >
+            See learning resources →
+          </a>
+
+        </div>
+
+
+        <div class="resource-card">
+
+          <div class="resource-icon">📅</div>
+
+          <h3>Attend an event</h3>
+
+          <p>
+            Libraries around Pima County host programs, classes, activities,
+            and events for people of all ages.
+          </p>
+
+          <a
+            href="https://www.library.pima.gov/events/"
+            target="_blank"
+            rel="noopener"
+          >
+            Find library events →
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- PERSONAL WRITING SECTION -->
+      <h2>It's more than just books.</h2>
+
+      <p>
+        <!-- ADD YOUR PERSONAL WRITING HERE -->
+        This is where you can add your own thoughts about why libraries
+        matter to Tucson and why you wanted to share this resource with
+        Love, Tucson readers.
+      </p>
+
+
+      <p>
+        <!-- ADD MORE OF YOUR WRITING HERE -->
+        You could talk about a favorite library, something you discovered
+        there, or a resource that surprised you.
+      </p>
+
+
+      <!-- CTA -->
+      <div class="article-cta">
+
+        <p class="eyebrow">READY TO EXPLORE?</p>
+
+        <h2>
+          See what's waiting at your library.
+        </h2>
+
+        <p>
+          Check out the Pima County Public Library website to explore
+          locations, events, the catalog, digital resources, and more.
+        </p>
+
+        <a
+          class="button"
+          href="https://www.library.pima.gov/"
+          target="_blank"
+          rel="noopener"
+        >
+          Visit Pima County Public Library →
+        </a>
+
+      </div>
+
+
+      <!-- BACK TO BLOG -->
+      <a class="back-link" href="blog.html">
+        ← Back to the Love, Tucson blog
+      </a>
+
+    </article>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-brand">
+      Love, Tucson ♡
+    </div>
+
+    <p>
+      Made with love in the Old Pueblo.
+    </p>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="sources.html">Sources</a>
+    </div>
+
+  </footer>
+
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
